@@ -13,12 +13,13 @@ call pathogen#helptags()
 
 set nocompatible                " choose no compatibility with legacy vi
 syntax enable
-set background=dark
 
 if has('gui_running')
+    set background=light
     colorscheme solarized
 else
-    colorscheme elflord 
+    set background=dark
+    colorscheme wombat 
 endif
 
 
