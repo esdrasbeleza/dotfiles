@@ -22,12 +22,15 @@ else
     colorscheme wombat 
 endif
 
-
+"" Common options
 set encoding=utf-8
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
 set number                      " Show line numbers
 set mouse=a                     " Enable mouse to visual mode
+
+"" Highlight
+set cursorline
 
 "" Whitespace
 set nowrap                      " don't wrap lines
