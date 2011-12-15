@@ -14,6 +14,14 @@ call pathogen#helptags()
 set nocompatible                " choose no compatibility with legacy vi
 syntax enable
 set background=dark
+
+if has('gui_running')
+    colorscheme solarized
+else
+    colorscheme elflord 
+endif
+
+
 set encoding=utf-8
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
