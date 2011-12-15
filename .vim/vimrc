@@ -1,6 +1,8 @@
 "
 " vim configuration file
 "
+" Must link or copy this file to ~/.vimrc
+"
 " Based on http://mislav.uniqpath.com/2011/12/vim-revisited/
 "          https://github.com/mislav/vimfiles/blob/master/vimrc
 "
@@ -16,6 +18,7 @@ set encoding=utf-8
 set showcmd                     " display incomplete commands
 filetype plugin indent on       " load file type plugins + indentation
 set number                      " Show line numbers
+set mouse=a                     " Enable mouse to visual mode
 
 "" Whitespace
 set nowrap                      " don't wrap lines
