@@ -119,4 +119,43 @@ inoremap <C-F4> <C-O><C-W>c
 cnoremap <C-F4> <C-C><C-W>c
 onoremap <C-F4> <C-C><C-W>c
 
+if has("gui_macvim")
+    " Use command + 1, 2, 3... to navigate between tabs
+    nmap <D-1> :tabn 1<CR>
+    nmap <D-2> :tabn 2<CR>
+    nmap <D-3> :tabn 3<CR>
+    nmap <D-4> :tabn 4<CR>
+    nmap <D-5> :tabn 5<CR>
+    nmap <D-6> :tabn 6<CR>
+    nmap <D-7> :tabn 7<CR>
+    nmap <D-8> :tabn 8<CR>
+    nmap <D-9> :tabn 9<CR>
+    nmap <D-0> :tabn 10<CR>
+endif
 
+if has("gui_running")
+    " Code completion using Ctrl+Space!
+    inoremap <C-Space> <C-n>
+
+    " Save session when we leave vim and open session when we get back
+    fu! SaveSess()                                                                                                                                                                                                                                                                                                              
+        execute 'mksession! ' . getcwd() . '/.session.vim'                                                                                                                                                                                                                                                                      
+    endfunction                                                                                                                                                                                                                                                                                                                 
+
+    fu! RestoreSess()                                                                                                                                                                                                                                                                                                           
+        if filereadable(getcwd() . '/.session.vim')                                                                                                                                                                                                                                                                                 
+            execute 'so ' . getcwd() . '/.session.vim'                                                                                                                                                                                                                                                                              
+            if bufexists(1)                                                                                                                                                                                                                                                                                                         
+                for l in range(1, bufnr('$'))                                                                                                                                                                                                                                                                                       
+                    if bufwinnr(l) == -1                                                                                                                                                                                                                                                                                            
+                        exec 'sbuffer ' . l                                                                                                                                                                                                                                                                                         
+                    endif                                                                                                                                                                                                                                                                                                           
+                endfor                                                                                                                                                                                                                                                                                                              
+            endif                                                                                                                                                                                                                                                                                                                   
+        endif                                                                                                                                                                                                                                                                                                                       
+        syntax on                                                                                                                                                                                                                                                                                                                   
+    endfunction                                                                                                                                                                                                                                                                                                                 
+
+    autocmd VimLeave * call SaveSess()                                                                                                                                                                                                                                                                                          
+    autocmd VimEnter * call RestoreSess()
+endif
