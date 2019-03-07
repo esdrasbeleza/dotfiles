@@ -104,6 +104,8 @@ export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$HOME/bin"
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+
 
 bindkey -s '˜' '~'
 
