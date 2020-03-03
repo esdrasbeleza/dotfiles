@@ -100,14 +100,14 @@ source $ZSH/oh-my-zsh.sh
 
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
-
 export PATH="$PATH:$HOME/bin"
 
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 
-
+# Fix ~ key in shell
 bindkey -s '˜' '~'
 
-eval $(minikube docker-env)
+alias gp="git pull"
+alias gpr="git pull --rebase"
 
