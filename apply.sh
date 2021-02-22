@@ -15,3 +15,10 @@ if [ ! -d "$HOME/.tmux" ]; then
 	ln -s -f .tmux/.tmux.conf
 	cat "$DOTFILES/tmux.conf.local" > ~/.tmux.conf.local
 fi
+
+if [ ! -d "$HOME/.tmux/themes/nord-tmux" ]; then
+	echo "Installing nord-tmux"
+	git clone https://github.com/arcticicestudio/nord-tmux ~/.tmux/themes/nord-tmux
+fi
+
+
