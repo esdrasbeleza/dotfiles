@@ -65,6 +65,7 @@ ZSH_THEME="daveverwer"
 plugins=(
   git
   zshmarks
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -110,4 +111,6 @@ bindkey -s '˜' '~'
 
 alias gp="git pull"
 alias gpr="git pull --rebase"
+alias gcd="git checkout dev"
+alias gcdpr="gcd && gpr"
 
