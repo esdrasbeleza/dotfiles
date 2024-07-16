@@ -6,6 +6,7 @@ init() {
     install_homebrew
     install_iterm
     install_rectangle
+    fix_home_and_end_keys
 }
 
 install_homebrew() {
@@ -17,12 +18,20 @@ install_iterm() {
     echo "Installing iterm2"
     brew install iterm2
     echo "Configuring iterm2"
-    defaults read .iterm2/com.googlecode.iterm2.plist
+    defaults read macos/com.googlecode.iterm2.plist
 }
 
 install_rectangle() {
     echo "Installing rectangle"
     brew install rectangle
+}
+
+fix_home_and_end_keys() {
+    echo "Fix home and end keys"
+    if [ ! -f "" ]; then
+        mkdir -p ~/Library/KeyBindings/
+        cp macos/DefaultKeyBinding.dict ~/Library/KeyBindings/
+    fi
 }
 
 install_firefox() {
@@ -66,7 +75,7 @@ install_spotify() {
     echo "Downloading Spotify"
     curl -O https://download.scdn.co/SpotifyInstaller.zip
     unzip SpotifyInstaller.zip
-    echo "Install Spotify manually"
+    echo "⚠️ Spotify was downloaded, but you need to install it manually!"
 }
 
 install_docker() {
@@ -77,7 +86,7 @@ install_1password() {
     echo "Downloading 1Password"
     curl -O https://downloads.1password.com/mac/1Password.zip
     unzip 1Password.zip
-    echo "Install 1Password manually"
+    echo "⚠️ 1Password was downloaded, but you need to install it manually!"
 }
 
 install_cli_tools() {

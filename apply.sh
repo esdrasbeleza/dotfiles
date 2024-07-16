@@ -27,3 +27,4 @@ install_spotify
 install_docker
 install_1password
 
+echo "Finished. You might need to restart your system to reload some settings."
