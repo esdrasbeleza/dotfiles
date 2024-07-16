@@ -1,24 +1,29 @@
 #!/bin/sh
-DOTFILES=`pwd`
+source functions_global.sh
 
-cd $HOME
+OS=`( lsb_release -ds || cat /etc/*release || uname -o ) 2>/dev/null | head -n1 | tr '[:upper:]' '[:lower:]'`
+ARCH=`uname -p`
 
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-	echo "Installing oh-my-zsh"
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-	cat "$DOTFILES/zshrc" > ~/.zshrc
+if [[ "$OS" =~ ^darwin ]]; then
+    OS="darwin"
+    source functions_macos.sh
+elif [[ "$OS" =~ ^linux ]]; then
+    OS="linux"
+    # TODO
+else
+    echo "Not supported"
+    exit 1
 fi
 
-if [ ! -d "$HOME/.tmux" ]; then
-	echo "Installing oh-my-tmux"
-	git clone https://github.com/gpakosz/.tmux.git
-	ln -s -f .tmux/.tmux.conf
-	cat "$DOTFILES/tmux.conf.local" > ~/.tmux.conf.local
-fi
-
-if [ ! -d "$HOME/.tmux/themes/nord-tmux" ]; then
-	echo "Installing nord-tmux"
-	git clone https://github.com/arcticicestudio/nord-tmux ~/.tmux/themes/nord-tmux
-fi
-
+init
+install_cli_tools
+install_zsh
+install_ohmytmux
+install_nordtmux
+install_firefox
+install_vscode
+install_postman
+install_spotify
+install_docker
+install_1password
 
