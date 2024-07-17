@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 init() {
     echo "Starting configuration for macOS"
     install_homebrew
@@ -28,13 +27,15 @@ install_rectangle() {
 
 fix_home_and_end_keys() {
     echo "Fix home and end keys"
-    if [ ! -f "" ]; then
-        mkdir -p ~/Library/KeyBindings/
-        cp macos/DefaultKeyBinding.dict ~/Library/KeyBindings/
+    if [ ! -f "$HOME/Library/KeyBindings/DefaultKeyBinding.dict" ]; then
+        mkdir -p "$HOME/Library/KeyBindings/"
+        cp macos/DefaultKeyBinding.dict "$HOME/Library/KeyBindings/"
     fi
 }
 
 install_firefox() {
+    echo "Installing Firefox"
+
     # Based on https://scriptingosx.com/2021/09/scripting-macos-part-7-download-and-install-firefox/
 
     # download latest Firefox disk image
@@ -53,6 +54,8 @@ install_firefox() {
 }
 
 install_vscode() {
+    echo "Installing VS Code"
+
     curl --location "https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal" \
         --output VSCode.zip
     unzip VSCode.zip
@@ -61,6 +64,8 @@ install_vscode() {
 }
 
 install_postman() {
+    echo "Installing Postman"
+
     if [[ "$ARCH" == "arm"  ]]; then
         curl --location "https://dl.pstmn.io/download/latest/osx_arm64" --output postman.zip
     else
@@ -79,6 +84,7 @@ install_spotify() {
 }
 
 install_docker() {
+    echo "Installing Docker Desktop"
     brew install --cask docker
 }
 
