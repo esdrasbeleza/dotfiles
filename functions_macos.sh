@@ -99,8 +99,9 @@ install_postman() {
 install_spotify() {
     echo "Downloading Spotify"
     curl -O https://download.scdn.co/SpotifyInstaller.zip
-    unzip SpotifyInstaller.zip
+    unzip SpotifyInstaller.zip && rm SpotifyInstaller.zip
     echo "⚠️ Spotify was downloaded, but you need to install it manually!"
+    open "Install Spotify.app" &
 }
 
 install_docker() {
@@ -111,8 +112,9 @@ install_docker() {
 install_1password() {
     echo "Downloading 1Password"
     curl -O https://downloads.1password.com/mac/1Password.zip
-    unzip 1Password.zip
+    unzip 1Password.zip && rm 1Password.zip
     echo "⚠️ 1Password was downloaded, but you need to install it manually!"
+    open "1Password Installer.app" &
 }
 
 install_cli_tools() {
