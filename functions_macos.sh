@@ -8,6 +8,26 @@ init() {
     fix_home_and_end_keys
 }
 
+install_slack() {
+    echo "Installing Slack"
+
+    # download latest Slack disk image
+    curl --location "https://slack.com/api/desktop.latestRelease?arch=universal&variant=dmg&redirect=true" \
+        --output Slack.dmg
+
+    # mount downloaded disk image
+    hdiutil attach Slack.dmg -nobrowse -readonly
+
+    echo "copying Slack to /Applications"
+    cp -R /Volumes/Slack/Slack.app /Applications/
+
+    # unmount disk image
+    hdiutil detach /Volumes/Slack/ -force
+}
+
+    https://slack.com/api/desktop.latestRelease?arch=universal&variant=dmg&redirect=true
+}
+
 install_homebrew() {
     echo "Installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

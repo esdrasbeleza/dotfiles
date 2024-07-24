@@ -18,6 +18,7 @@ fi
 init
 install_cli_tools
 install_zsh
+install_slack
 install_ohmytmux
 install_nordtmux
 install_firefox
