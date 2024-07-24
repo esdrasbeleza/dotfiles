@@ -15,8 +15,8 @@ install_zsh() {
 install_ohmytmux() {
     if [ ! -d "$HOME/.tmux" ]; then
         echo "Installing oh-my-tmux"
-        git clone https://github.com/gpakosz/.tmux.git
-        ln -s -f .tmux/.tmux.conf
+        git clone https://github.com/gpakosz/.tmux.git "$HOME/.tmux"
+        ln -s -f "$HOME/.tmux/.tmux.conf" "$HOME/.tmux.conf"
         cat "$DOTFILES/tmux.conf.local" > ~/.tmux.conf.local
     fi
 }
