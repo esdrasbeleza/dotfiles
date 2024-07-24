@@ -36,8 +36,7 @@ install_homebrew() {
 install_iterm() {
     echo "Installing iterm2"
     brew install iterm2
-    echo "Configuring iterm2"
-    defaults read macos/com.googlecode.iterm2.plist
+    echo "Please import the settings manually into iTerm!"
 }
 
 install_rectangle() {
