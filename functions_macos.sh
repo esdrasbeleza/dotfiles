@@ -28,6 +28,9 @@ install_slack() {
 install_homebrew() {
     echo "Installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+    (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> $HOME/.profile
+    eval "$(/usr/local/bin/brew shellenv)"
 }
 
 install_iterm() {
