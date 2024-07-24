@@ -25,9 +25,6 @@ install_slack() {
     hdiutil detach /Volumes/Slack/ -force
 }
 
-    https://slack.com/api/desktop.latestRelease?arch=universal&variant=dmg&redirect=true
-}
-
 install_homebrew() {
     echo "Installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
