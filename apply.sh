@@ -17,6 +17,7 @@ fi
 
 init
 install_cli_tools
+install_go
 install_zsh
 install_slack
 install_ohmytmux

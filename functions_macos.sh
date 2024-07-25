@@ -172,6 +172,10 @@ install_cli_tools() {
     brew install the_silver_searcher font-hack-nerd-font tmux vim nvim jq direnv
 }
 
+install_go() {
+    brew install -q go
+}
+
 configure_dock() {
     echo "Configuring Dock"
 
@@ -197,7 +201,6 @@ configure_dock() {
     done
 
     for app in "${apps_to_add[@]}"; do
-        echo "Adding $app to Dock"
         dockutil --no-restart  -a "$app"
     done
 
