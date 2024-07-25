@@ -6,6 +6,7 @@ init() {
     install_iterm
     install_rectangle
     fix_home_and_end_keys
+    configure_dock
 }
 
 install_slack() {
@@ -171,3 +172,34 @@ install_cli_tools() {
     brew install the_silver_searcher font-hack-nerd-font tmux vim nvim jq direnv
 }
 
+configure_dock() {
+    echo "Configuring Dock"
+
+    if ! command -v dockutil &> /dev/null ; then
+        brew install dockutil
+    fi
+
+    declare -a apps_to_add
+    apps_to_add[0]="/System/Applications/Launchpad.app"
+    apps_to_add[1]="/Applications/Firefox.app"
+    apps_to_add[2]="/Applications/Slack.app"
+    apps_to_add[3]="/Applications/Visual Studio Code.app" 
+    apps_to_add[4]="/Applications/iTerm.app"
+    apps_to_add[5]="/System/Applications/Notes.app"
+    apps_to_add[6]="/Applications/Spotify.app"
+
+    # Remove all of them so we can re-add in order
+    for app in "${apps_to_add[@]}"; do
+        if dockutil -f "$app" > /dev/null; then 
+            echo "Removing $app from Dock"
+            dockutil --no-restart  --remove "$app"
+        fi
+    done
+
+    for app in "${apps_to_add[@]}"; do
+        echo "Adding $app to Dock"
+        dockutil --no-restart  -a "$app"
+    done
+
+    killall Dock
+}
