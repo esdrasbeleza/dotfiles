@@ -9,6 +9,11 @@ init() {
 }
 
 install_slack() {
+    if [ -d "/Applications/Slack.app"  ]; then
+        echo "Slack is already installed, skipping"
+        return
+    fi
+
     echo "Installing Slack"
 
     # download latest Slack disk image
@@ -26,6 +31,11 @@ install_slack() {
 }
 
 install_homebrew() {
+    if command -v brew &> /dev/null ; then
+        echo "Homebrew is already installed, skipping"
+        return
+    fi
+
     echo "Installing homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     
@@ -34,12 +44,22 @@ install_homebrew() {
 }
 
 install_iterm() {
+    if [ -d "/Applications/iTerm.app"  ]; then
+        echo "iTerm is already installed, skipping"
+        return
+    fi
+
     echo "Installing iterm2"
     brew install iterm2
-    echo "Please import the settings manually into iTerm!"
+    echo "Please import the settings manually into iTerm!"0
 }
 
 install_rectangle() {
+    if [ -d "/Applications/Rectangle.app"  ]; then
+        echo "Rectangle is already installed, skipping"
+        return
+    fi
+
     echo "Installing rectangle"
     brew install rectangle
 }
@@ -53,6 +73,11 @@ fix_home_and_end_keys() {
 }
 
 install_firefox() {
+    if [ -d "/Applications/Firefox.app"  ]; then
+        echo "Firefox is already installed, skipping"
+        return
+    fi
+
     echo "Installing Firefox"
 
     # Based on https://scriptingosx.com/2021/09/scripting-macos-part-7-download-and-install-firefox/
@@ -73,6 +98,11 @@ install_firefox() {
 }
 
 install_vscode() {
+    if [ -d "/Applications/Visual Studio Code.app"  ]; then
+        echo "Visual Studio Code is already installed, skipping"
+        return
+    fi
+
     echo "Installing VS Code"
 
     curl --location "https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal" \
@@ -83,6 +113,11 @@ install_vscode() {
 }
 
 install_postman() {
+    if [ -d "/Applications/Postman.app"  ]; then
+        echo "Postman is already installed, skipping"
+        return
+    fi
+    
     echo "Installing Postman"
 
     if [[ "$ARCH" == "arm"  ]]; then
@@ -96,6 +131,11 @@ install_postman() {
 }
 
 install_spotify() {
+    if [ -d "/Applications/Spotify.app"  ]; then
+        echo "Spotify is already installed, skipping"
+        return
+    fi
+
     echo "Downloading Spotify"
     curl -O https://download.scdn.co/SpotifyInstaller.zip
     unzip SpotifyInstaller.zip && rm SpotifyInstaller.zip
@@ -104,11 +144,21 @@ install_spotify() {
 }
 
 install_docker() {
+    if command -v docker &> /dev/null ; then
+        echo "Docker is already installed, skipping"
+        return
+    fi
+
     echo "Installing Docker Desktop"
     brew install --cask docker
 }
 
 install_1password() {
+    if [ -d "/Applications/1Password.app"  ]; then
+        echo "1Password is already installed, skipping"
+        return
+    fi
+
     echo "Downloading 1Password"
     curl -O https://downloads.1password.com/mac/1Password.zip
     unzip 1Password.zip && rm 1Password.zip

@@ -10,6 +10,11 @@ install_zsh() {
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
         cat "$DOTFILES/zshrc" > ~/.zshrc
     fi
+
+    if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+        echo "Installing zsh-autosuggestions"
+        git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+    fi
 }
 
 install_ohmytmux() {
