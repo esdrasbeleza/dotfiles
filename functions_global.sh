@@ -4,10 +4,10 @@
 
 DOTFILES=`pwd`
 
-install_zsh() {
+install_ohmyzsh() {
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
-        echo "Installing oh-my-zsh"
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+        echo "Installing oh-my-zsh unattended"
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
         cat "$DOTFILES/zshrc" > ~/.zshrc
     fi
 
