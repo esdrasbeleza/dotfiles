@@ -15,6 +15,8 @@ else
     exit 1
 fi
 
+# Those functions must be implemented in functions_*.sh files,
+# since they have a different implementation for each platform
 init
 install_cli_tools
 install_go
@@ -28,5 +30,6 @@ install_postman
 install_spotify
 install_docker
 install_1password
+finish
 
 echo "Finished. You might need to restart your system to reload some settings."

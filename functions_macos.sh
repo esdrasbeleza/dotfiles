@@ -6,6 +6,9 @@ init() {
     install_iterm
     install_rectangle
     fix_home_and_end_keys
+}
+
+finish() {
     configure_dock
 }
 
@@ -52,7 +55,7 @@ install_iterm() {
 
     echo "Installing iterm2"
     brew install iterm2
-    echo "Please import the settings manually into iTerm!"0
+    echo "Please import the settings manually into iTerm!"
 }
 
 install_rectangle() {

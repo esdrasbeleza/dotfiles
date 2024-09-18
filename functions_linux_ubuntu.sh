@@ -6,6 +6,10 @@ init() {
     install_zsh
 }
 
+finish() {
+    # Functions to be executed in the end of configuration
+}
+
 install_cli_tools() {
     echo "Installing CLI tools"
     sudo apt install -y silversearcher-ag tmux vim neovim jq direnv fonts-hack-ttf
