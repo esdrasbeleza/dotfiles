@@ -103,8 +103,13 @@ source $ZSH/oh-my-zsh.sh
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
 
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+OS=`( lsb_release -ds || cat /etc/*release || uname -o ) 2>/dev/null | head -n1 | tr '[:upper:]' '[:lower:]'`
+
+if [[ "$OS" =~ ^darwin ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+    code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+fi
 
 # Fix ~ key in shell
 bindkey -s '˜' '~'
