@@ -8,8 +8,11 @@ if [[ "$OS" =~ ^darwin ]]; then
     OS="darwin"
     source functions_macos.sh
 elif [[ "$OS" =~ ^ubuntu ]]; then
-    OS="linux"
+    OS="linux-ubuntu"
     source functions_linux_ubuntu.sh
+elif [[ -f "/etc/arch-release" ]]; then
+    OS="linux-arch"
+    source functions_linux_arch.sh || exit 1
 else
     echo "Not supported"
     exit 1
