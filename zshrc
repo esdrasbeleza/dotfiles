@@ -114,6 +114,7 @@ fi
 # Fix ~ key in shell
 bindkey -s '˜' '~'
 
+# git aliases
 alias gp="git pull"
 alias gpr="git pull --rebase"
 alias gcd="git checkout dev"
@@ -126,3 +127,8 @@ eval "$(direnv hook zsh)"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# if there's no vim and there's nvim, create an alias
+if ! command -v vim >/dev/null 2>&1 && command -v nvim >/dev/null 2>&1; then
+  alias vim='nvim'
+fi
