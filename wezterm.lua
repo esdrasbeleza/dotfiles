@@ -2,6 +2,10 @@ local wezterm = require 'wezterm'
 
 local config = wezterm.config_builder()
 
+local is_linux = function()
+	return wezterm.target_triple:find("linux") ~= nil
+end
+
 config.color_scheme = 'Gruvbox dark, soft (base16)'
 config.font = wezterm.font {
 	family = 'FiraCode Nerd Font Mono',
@@ -11,7 +15,7 @@ config.font = wezterm.font {
 
 config.line_height = 1.1
 
-config.hide_tab_bar_if_only_one_tab = true
+config.font_size = 12.0
 
 config.visual_bell = {
   fade_in_function = 'EaseIn',
@@ -23,5 +27,14 @@ config.colors = {
   visual_bell = '#202020',
 }
 config.audible_bell = "Disabled"
+
+if is_linux then
+  config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+  config.integrated_title_buttons = { 'Hide', 'Maximize', 'Close' }
+end
+
+if is_darwin then
+  config.hide_tab_bar_if_only_one_tab = true
+end
 
 return config
