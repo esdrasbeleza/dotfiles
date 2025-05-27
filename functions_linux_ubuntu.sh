@@ -12,7 +12,7 @@ finish() {
 
 install_cli_tools() {
     echo "Installing CLI tools"
-    sudo apt install -y silversearcher-ag tmux vim neovim jq direnv fonts-hack-ttf
+    sudo apt install -y silversearcher-ag tmux vim neovim jq direnv fonts-hack-ttf git shellcheck ripgrep fd sqlite python3 python3-pip
 }
 
 install_go() {

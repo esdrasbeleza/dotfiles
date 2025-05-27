@@ -172,7 +172,7 @@ install_1password() {
 
 install_cli_tools() {
     echo "Installing CLI tools"
-    brew install the_silver_searcher font-hack-nerd-font tmux vim nvim jq direnv
+    brew install the_silver_searcher font-hack-nerd-font tmux vim nvim jq direnv git shellcheck ripgrep fd sqlite lua stylua lua-language-server python3
 }
 
 install_go() {
