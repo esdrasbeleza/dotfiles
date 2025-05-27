@@ -32,3 +32,10 @@ install_nordtmux() {
         git clone https://github.com/arcticicestudio/nord-tmux ~/.tmux/themes/nord-tmux
     fi
 }
+
+setup_git() {
+  git config --global user.name "Esdras Beleza"
+  git config --global --add --bool push.autoSetupRemote true
+	git config --global alias.lb "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:iso8601) %(refname:short)'"
+}
+

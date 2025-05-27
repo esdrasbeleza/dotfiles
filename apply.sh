@@ -2,7 +2,7 @@
 source functions_global.sh
 
 OS=`( lsb_release -ds || cat /etc/*release || uname -o ) 2>/dev/null | head -n1 | tr '[:upper:]' '[:lower:]'`
-ARCH=`uname -p`
+ARCH=$(uname -p)
 
 if [[ "$OS" =~ ^darwin ]]; then
     OS="darwin"
@@ -33,6 +33,7 @@ install_postman
 install_spotify
 install_docker
 install_1password
+setup_git
 finish
 
 echo "Finished. You might need to restart your system to reload some settings."
