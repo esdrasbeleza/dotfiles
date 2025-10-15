@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Those functions work in macOS or Linux
 

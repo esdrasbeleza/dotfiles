@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 init() {
     echo "Starting configuration for macOS"
