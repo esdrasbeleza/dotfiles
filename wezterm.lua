@@ -3,19 +3,19 @@ local wezterm = require 'wezterm'
 local config = wezterm.config_builder()
 
 local is_linux = function()
-	return wezterm.target_triple:find("linux") ~= nil
+  return wezterm.target_triple:find("linux") ~= nil
 end
 
-config.color_scheme = 'Gruvbox dark, soft (base16)'
+config.color_scheme = 'terafox'
 config.font = wezterm.font {
-	family = 'FiraCode Nerd Font Mono',
-	weight = 'Regular',
-	harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1'},
+  family = 'FiraCode Nerd Font Mono',
+  weight = 'Regular',
+  harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' },
 }
 
 config.line_height = 1.1
 
-config.font_size = 12.0
+config.font_size = 18.0
 
 config.visual_bell = {
   fade_in_function = 'EaseIn',
