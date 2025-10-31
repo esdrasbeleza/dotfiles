@@ -6,6 +6,12 @@ local is_linux = function()
   return wezterm.target_triple:find("linux") ~= nil
 end
 
+local is_darwin = function()
+  return wezterm.target_triple:find("darwin") ~= nil
+end
+
+
+
 config.color_scheme = 'terafox'
 config.font = wezterm.font {
   family = 'FiraCode Nerd Font Mono',
@@ -36,5 +42,14 @@ end
 if is_darwin then
   config.hide_tab_bar_if_only_one_tab = true
 end
+
+config.window_frame = {
+  font = wezterm.font({ family = 'Vanilla Sans' }),
+  font_size = 20,
+}
+
+config.command_palette_font_size = 20
+config.command_palette_rows = 30
+config.command_palette_line_height = 1.5
 
 return config
