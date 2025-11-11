@@ -36,6 +36,11 @@ install_nordtmux() {
 setup_git() {
   git config --global user.name "Esdras Beleza"
   git config --global --add --bool push.autoSetupRemote true
+
+  # List branches
 	git config --global alias.lb "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:iso8601) %(refname:short)'"
+
+  # Use "main" as default branch name
+   git config --global init.defaultBranch main
 }
 
