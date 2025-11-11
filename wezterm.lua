@@ -50,6 +50,5 @@ config.window_frame = {
 
 config.command_palette_font_size = 20
 config.command_palette_rows = 30
-config.command_palette_line_height = 1.5
 
 return config
