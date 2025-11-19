@@ -10,14 +10,28 @@ local is_darwin = function()
   return wezterm.target_triple:find("darwin") ~= nil
 end
 
-
-
 config.color_scheme = 'terafox'
-config.font = wezterm.font {
-  family = 'FiraCode Nerd Font Mono',
-  weight = 'Regular',
-  harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' },
+
+-- Configure fonts
+local fonts = {
+  {
+    family = 'FiraCode Nerd Font Mono',
+    weight = 'Regular',
+    harfbuzz_features = { 'calt=1', 'clig=1', 'liga=1' },
+    assume_emoji_presentation = false,
+  }
 }
+if is_darwin then
+  table.insert(fonts, {
+    family = 'Apple Color Emoji',
+    assume_emoji_presentation = true,
+    style = 'Normal',
+    weight = 'Regular',
+    stretch = 'Normal'
+  })
+end
+config.font = wezterm.font_with_fallback(fonts)
+
 
 config.line_height = 1.1
 
