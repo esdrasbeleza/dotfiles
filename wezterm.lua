@@ -58,8 +58,8 @@ if is_darwin then
 end
 
 config.window_frame = {
-  font = wezterm.font({ family = 'Vanilla Sans' }),
-  font_size = 20,
+  font = wezterm.font({ family = 'FiraCode Nerd Font Mono' }),
+  font_size = 14,
 }
 
 config.command_palette_font_size = 20
