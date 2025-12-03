@@ -65,4 +65,8 @@ config.window_frame = {
 config.command_palette_font_size = 20
 config.command_palette_rows = 30
 
+config.use_fancy_tab_bar = true
+config.window_background_opacity = 0.93
+config.macos_window_background_blur = 55
+
 return config
