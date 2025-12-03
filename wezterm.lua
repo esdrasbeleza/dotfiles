@@ -69,4 +69,35 @@ config.use_fancy_tab_bar = true
 config.window_background_opacity = 0.93
 config.macos_window_background_blur = 55
 
+-- Automatically add padding when only one tab
+-- Copied from https://github.com/wezterm/wezterm/issues/5443
+wezterm.on("update-right-status", function(window, pane)
+  -- Get the current mux window
+  local overrides = window:get_config_overrides() or {}
+  local muxwin = pane:window()
+  -- Get the number of tabs in the current mux window
+  local tab_count = (muxwin and muxwin.tabs and #muxwin:tabs()) or 0
+  -- Set top padding based on the number of tabs
+  if tab_count == 1 and window:get_dimensions().is_full_screen == false then
+    -- Add padding when there is only one tab and not full screen
+    overrides.window_padding = {
+      left = '1cell',
+      right = '1cell',
+      top = '1.7cell',
+      bottom = '0.5cell',
+    }
+  else
+    -- Remove the padding when there are multiple tabs or full screen
+    overrides.window_padding = {
+      left = '1cell',
+      right = '1cell',
+      top = '0.5cell',
+      bottom = '0.5cell',
+    }
+  end
+  -- Set the config overrides for the current window
+  window:set_config_overrides(overrides)
+end)
+
+
 return config
