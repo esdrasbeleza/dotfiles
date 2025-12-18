@@ -114,3 +114,12 @@ install_1password() {
     makepkg -D 1password -f -i -s --noconfirm && rm -rf ./1password
 }
 
+install_ghostty() {
+    if command -v ghostty &> /dev/null ; then
+        echo "Ghostty is already installed, skipping"
+        return
+    fi
+    echo "Installing Ghostty"
+    sudo pacman -S --noconfirm ghostty
+}
+

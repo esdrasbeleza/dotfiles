@@ -33,6 +33,13 @@ install_nordtmux() {
     fi
 }
 
+setup_ghostty() {
+  if [ ! -d "$HOME/.config/ghostty" ]; then
+    mkdir "$HOME/.config.ghostty"
+  fi
+  cp ghostty_config "$HOME/.config/ghostty/config"
+}
+
 setup_git() {
   git config --global user.name "Esdras Beleza"
   git config --global --add --bool push.autoSetupRemote true

@@ -1,0 +1,40 @@
+# Ghostty configuration
+# Location: ~/.config/ghostty/config
+
+# Color scheme
+# theme = Monokai Pro Machine
+theme = Monokai Pro Machine
+
+# Font configuration
+font-family = "FiraCode Nerd Font Mono"
+font-size = 18
+font-feature = +liga
+
+
+# Bell settings
+bell-features = title,no-system
+
+# Window background opacity
+background-opacity = 0.93
+background-blur = 55
+
+# Window padding
+window-padding-x = 10
+window-padding-y = 10
+
+# Line height
+adjust-cell-height = 10%
+
+# Cursor
+cursor-style = block
+shell-integration-features = no-cursor
+
+# Tab bar
+window-show-tab-bar = always
+
+# Keybinds
+keybind = ctrl+b>shift+5=new_split:right
+keybind = ctrl+b>shift+=new_split:down
+keybind = ctrl+b>arrow_left=goto_split:left
+keybind = ctrl+b>arrow_right=goto_split:right
+

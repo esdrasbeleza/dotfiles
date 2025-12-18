@@ -24,6 +24,7 @@ init
 install_cli_tools
 install_go
 install_ohmyzsh
+install_ghostty
 install_slack
 install_ohmytmux
 install_nordtmux
@@ -34,6 +35,7 @@ install_spotify
 install_docker
 install_1password
 setup_git
+setup_ghostty
 finish
 
 echo "Finished. You might need to restart your system to reload some settings."

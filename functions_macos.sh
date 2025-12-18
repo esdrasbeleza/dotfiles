@@ -179,6 +179,15 @@ install_go() {
     brew install -q go
 }
 
+install_ghostty() {
+    if [ -d "/Applications/Ghostty.app"  ]; then
+        echo "Ghostty is already installed, skipping"
+        return
+    fi
+    echo "Installing Ghostty"
+    brew install ghostty
+}
+
 configure_dock() {
     echo "Configuring Dock"
 

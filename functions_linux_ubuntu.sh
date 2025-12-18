@@ -106,3 +106,12 @@ install_1password() {
     sudo apt install -y 1password
 }
 
+install_ghostty() {
+    if command -v ghostty &> /dev/null ; then
+        echo "Ghostty is already installed, skipping"
+        return
+    fi
+    echo "Installing Ghostty"
+    sudo snap install ghostty --classic
+}
+
