@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 source functions_global.sh
 
 OS=`( lsb_release -ds || cat /etc/*release || uname -o ) 2>/dev/null | head -n1 | tr '[:upper:]' '[:lower:]'`
