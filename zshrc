@@ -107,6 +107,8 @@ OS=`( lsb_release -ds || cat /etc/*release || uname -o ) 2>/dev/null | head -n1 
 
 if [[ "$OS" =~ ^darwin ]]; then
     export PATH="/opt/homebrew/bin:$PATH"
+    eval "$(brew shellenv)"
+
     alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
     code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
 fi
