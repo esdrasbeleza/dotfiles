@@ -1,5 +1,14 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+OS=`( lsb_release -ds || cat /etc/*release || uname -o ) 2>/dev/null | head -n1 | tr '[:upper:]' '[:lower:]'`
+
+if [[ "$OS" =~ ^darwin ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    eval "$(brew shellenv)"
+
+    alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+    code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
+fi
+
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -99,19 +108,8 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
 export GOPATH="$HOME/go"
 export PATH="$PATH:$GOPATH/bin"
-
-OS=`( lsb_release -ds || cat /etc/*release || uname -o ) 2>/dev/null | head -n1 | tr '[:upper:]' '[:lower:]'`
-
-if [[ "$OS" =~ ^darwin ]]; then
-    export PATH="/opt/homebrew/bin:$PATH"
-    eval "$(brew shellenv)"
-
-    alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
-    code () { VSCODE_CWD="$PWD" open -n -b "com.microsoft.VSCode" --args $* ;}
-fi
 
 # Fix ~ key in shell
 bindkey -s '˜' '~'
@@ -131,6 +129,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # if there's no vim and there's nvim, create an alias
-if ! command -v vim >/dev/null 2>&1 && command -v nvim >/dev/null 2>&1; then
+if command -v nvim >/dev/null 2>&1; then
   alias vim='nvim'
 fi
