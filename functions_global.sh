@@ -35,7 +35,7 @@ install_nordtmux() {
 
 setup_ghostty() {
   if [ ! -d "$HOME/.config/ghostty" ]; then
-    mkdir "$HOME/.config.ghostty"
+    mkdir "$HOME/.config/ghostty"
   fi
   cp ghostty_config "$HOME/.config/ghostty/config"
 }
