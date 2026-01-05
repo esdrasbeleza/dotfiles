@@ -27,7 +27,9 @@ adjust-cell-height = 10%
 
 # Cursor
 cursor-style = block
-shell-integration-features = no-cursor
+
+# Configure cursor, fix issues with ssh
+shell-integration-features = no-cursor, ssh-env
 
 # Tab bar
 window-show-tab-bar = always
