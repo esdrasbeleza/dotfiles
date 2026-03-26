@@ -22,6 +22,48 @@ install_stow() {
     fi
 }
 
+migrate_git_config() {
+    # If ~/.gitconfig exists, check if it's already our symlink
+    if [ -e "$HOME/.gitconfig" ]; then
+        if [ -L "$HOME/.gitconfig" ]; then
+            # It's a symlink - check if it points to our dotfiles
+            link_target=$(readlink "$HOME/.gitconfig")
+            if [[ "$link_target" =~ dotfiles/git/\.gitconfig ]]; then
+                echo "~/.gitconfig already points to dotfiles, skipping migration"
+                return
+            fi
+        fi
+
+        # Not a symlink or not pointing to our dotfiles - ask what to do
+        echo "Found existing ~/.gitconfig"
+        read -p "Move to ~/.gitconfig.local? (y)es/(n)o skip/(b)ackup and override: " -n 1 -r choice < /dev/tty
+        echo
+
+        case "$choice" in
+            y|Y)
+                if [ -f "$HOME/.gitconfig.local" ]; then
+                    echo "~/.gitconfig.local already exists, backing it up first"
+                    cp "$HOME/.gitconfig.local" "$HOME/.gitconfig.local.backup-$(date +%Y%m%d-%H%M%S)"
+                fi
+                mv "$HOME/.gitconfig" "$HOME/.gitconfig.local"
+                echo "Moved existing git config to ~/.gitconfig.local"
+                ;;
+            b|B)
+                BACKUP_DIR="$HOME/.dotfiles-backup-$(date +%Y%m%d-%H%M%S)"
+                mkdir -p "$BACKUP_DIR"
+                mv "$HOME/.gitconfig" "$BACKUP_DIR/.gitconfig"
+                echo "Backed up ~/.gitconfig to $BACKUP_DIR/.gitconfig"
+                ;;
+            n|N)
+                echo "Skipping ~/.gitconfig migration"
+                ;;
+            *)
+                echo "Invalid choice, skipping"
+                ;;
+        esac
+    fi
+}
+
 stow_configs() {
     echo "Stowing configuration files..."
 

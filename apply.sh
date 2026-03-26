@@ -39,6 +39,7 @@ install_spotify
 install_docker
 install_1password
 setup_git
+migrate_git_config
 stow_configs
 finish
 
