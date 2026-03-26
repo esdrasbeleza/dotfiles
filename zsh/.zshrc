@@ -126,6 +126,9 @@ eval "$(direnv hook zsh)"
 # zoxide - smarter cd
 eval "$(zoxide init zsh)"
 
+# starship prompt
+eval "$(starship init zsh)"
+
 # Editor
 export EDITOR=nvim
 
