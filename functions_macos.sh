@@ -8,7 +8,13 @@ init() {
 }
 
 finish() {
-    configure_dock
+    read -p "Configure dock? (y/n) " -n 1 -r
+    echo
+    if [[ $REPLY =~ ^[Yy]$ ]]; then
+        configure_dock
+    else
+        echo "Skipping dock configuration"
+    fi
 }
 
 install_slack() {
