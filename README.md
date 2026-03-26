@@ -18,7 +18,7 @@ They work on macOS and Ubuntu so far.
 ### on macOS:
 
 - Install homebrew
-- Install iTerm
+- Install Ghostty terminal
 - Install Rectangle
 - Configure home and end keys
 - Add the apps above to the dock
@@ -40,7 +40,7 @@ Configuration files are organized into Stow packages:
 - `zsh/` - ZSH configuration (.zshrc)
 - `tmux/` - tmux configuration (.tmux.conf.local)
 - `ghostty/` - Ghostty terminal configuration
-- `wezterm/` - WezTerm configuration
-- `macos/` - macOS-specific configurations (KeyBindings, iTerm settings)
+- `git/` - Git configuration with delta integration
+- `macos/` - macOS-specific configurations (KeyBindings)
 
 Each package directory mirrors your home directory structure. GNU Stow creates symlinks from your home directory to these files.

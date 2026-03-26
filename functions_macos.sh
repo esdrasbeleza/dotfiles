@@ -3,7 +3,6 @@
 init() {
     echo "Starting configuration for macOS"
     install_homebrew
-    install_iterm
     install_rectangle
     fix_home_and_end_keys
 }
@@ -45,17 +44,6 @@ install_homebrew() {
     
     (echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> $HOME/.profile
     eval "$(/opt/homebrew/bin/brew shellenv)"
-}
-
-install_iterm() {
-    if [ -d "/Applications/iTerm.app"  ]; then
-        echo "iTerm is already installed, skipping"
-        return
-    fi
-
-    echo "Installing iterm2"
-    brew install iterm2
-    echo "Please import the settings manually into iTerm!"
 }
 
 install_rectangle() {
@@ -205,24 +193,23 @@ configure_dock() {
     fi
 
     declare -a apps_to_add
-    apps_to_add[0]="/System/Applications/Launchpad.app"
-    apps_to_add[1]="/Applications/Firefox.app"
-    apps_to_add[2]="/Applications/Slack.app"
-    apps_to_add[3]="/Applications/Visual Studio Code.app" 
-    apps_to_add[4]="/Applications/iTerm.app"
-    apps_to_add[5]="/System/Applications/Notes.app"
-    apps_to_add[6]="/Applications/Spotify.app"
+    apps_to_add[0]="/Applications/Firefox.app"
+    apps_to_add[1]="/Applications/Slack.app"
+    apps_to_add[2]="/Applications/Visual Studio Code.app"
+    apps_to_add[3]="/Applications/Ghostty.app"
+    apps_to_add[4]="/System/Applications/Notes.app"
+    apps_to_add[5]="/Applications/Spotify.app"
 
-    # Remove all of them so we can re-add in order
+    # Remove existing apps from dock (ignore errors if not found)
     for app in "${apps_to_add[@]}"; do
-        if dockutil -f "$app" > /dev/null; then 
-            echo "Removing $app from Dock"
-            dockutil --no-restart  --remove "$app"
-        fi
+        dockutil --no-restart --remove "$app" 2>/dev/null || true
     done
 
+    # Add apps to dock (only if they exist)
     for app in "${apps_to_add[@]}"; do
-        dockutil --no-restart  -a "$app"
+        if [ -d "$app" ]; then
+            dockutil --no-restart --add "$app" 2>/dev/null || echo "Note: Could not add $app to Dock"
+        fi
     done
 
     killall Dock
