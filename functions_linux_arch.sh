@@ -39,7 +39,7 @@ finish() {
 
 install_cli_tools() {
     echo "Installing CLI tools"
-    sudo pacman -S  --noconfirm the_silver_searcher tmux vim neovim jq direnv ttf-hack-nerd git shellcheck ripgrep fd sqlite python lua stylua lua-language-server
+    sudo pacman -S  --noconfirm the_silver_searcher tmux vim neovim jq direnv ttf-hack-nerd git shellcheck ripgrep fd sqlite python lua stylua lua-language-server zoxide
 }
 
 install_go() {

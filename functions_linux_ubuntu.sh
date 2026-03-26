@@ -13,6 +13,11 @@ finish() {
 install_cli_tools() {
     echo "Installing CLI tools"
     sudo apt install -y silversearcher-ag tmux vim neovim jq direnv fonts-hack-ttf git shellcheck ripgrep fd sqlite python3 python3-pip
+
+    # Install zoxide (not in apt repos)
+    if ! command -v zoxide &> /dev/null ; then
+        curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+    fi
 }
 
 install_go() {
