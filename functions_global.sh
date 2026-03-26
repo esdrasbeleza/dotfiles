@@ -58,6 +58,11 @@ install_ohmyzsh() {
         echo "Installing zsh-autosuggestions"
         git clone https://github.com/zsh-users/zsh-autosuggestions "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     fi
+
+    if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
+        echo "Installing zsh-syntax-highlighting"
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+    fi
 }
 
 install_ohmytmux() {
