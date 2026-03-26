@@ -46,6 +46,11 @@ install_cli_tools() {
         sudo install lazygit /usr/local/bin
         rm lazygit lazygit.tar.gz
     fi
+
+    # starship - https://starship.rs/guide/#%F0%9F%9A%80-installation
+    if ! command -v starship &> /dev/null ; then
+        curl -sS https://starship.rs/install.sh | sh -s -- -y
+    fi
 }
 
 install_go() {
