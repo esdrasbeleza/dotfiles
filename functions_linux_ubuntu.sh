@@ -115,3 +115,12 @@ install_ghostty() {
     sudo snap install ghostty --classic
 }
 
+install_asdf() {
+    if [ -d "$HOME/.asdf" ]; then
+        echo "asdf is already installed, skipping"
+        return
+    fi
+    echo "Installing asdf"
+    git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch v0.14.1
+}
+

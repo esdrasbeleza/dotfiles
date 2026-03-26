@@ -26,6 +26,7 @@ init
 install_cli_tools
 install_go
 install_stow
+install_asdf
 install_ohmyzsh
 install_ghostty
 install_slack

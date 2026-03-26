@@ -188,6 +188,15 @@ install_ghostty() {
     brew install ghostty
 }
 
+install_asdf() {
+    if command -v asdf &> /dev/null ; then
+        echo "asdf is already installed, skipping"
+        return
+    fi
+    echo "Installing asdf"
+    brew install asdf
+}
+
 configure_dock() {
     echo "Configuring Dock"
 

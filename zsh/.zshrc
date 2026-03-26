@@ -79,7 +79,7 @@ ZSH_THEME="daveverwer"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions asdf)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -122,11 +122,6 @@ alias gcdpr="gcd && gpr"
 
 # direnv
 eval "$(direnv hook zsh)"
-
-# node
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # if there's no vim and there's nvim, create an alias
 if command -v nvim >/dev/null 2>&1; then

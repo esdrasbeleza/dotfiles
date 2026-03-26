@@ -123,3 +123,12 @@ install_ghostty() {
     sudo pacman -S --noconfirm ghostty
 }
 
+install_asdf() {
+    if command -v asdf &> /dev/null ; then
+        echo "asdf is already installed, skipping"
+        return
+    fi
+    echo "Installing asdf"
+    sudo pacman -S --noconfirm asdf-vm
+}
+
