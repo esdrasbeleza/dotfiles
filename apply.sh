@@ -25,6 +25,7 @@ fi
 init
 install_cli_tools
 install_go
+install_stow
 install_ohmyzsh
 install_ghostty
 install_slack
@@ -37,7 +38,7 @@ install_spotify
 install_docker
 install_1password
 setup_git
-setup_ghostty
+stow_configs
 finish
 
 echo "Finished. You might need to restart your system to reload some settings."

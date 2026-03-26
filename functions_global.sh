@@ -4,11 +4,54 @@
 
 DOTFILES=`pwd`
 
+install_stow() {
+    if command -v stow &> /dev/null ; then
+        echo "GNU Stow is already installed"
+        return
+    fi
+
+    echo "Installing GNU Stow"
+
+    if [[ "$OS" == "darwin" ]]; then
+        brew install stow
+    elif [[ "$OS" == "linux-arch" ]]; then
+        sudo pacman -S --noconfirm stow
+    elif [[ "$OS" == "linux-ubuntu" ]]; then
+        sudo apt-get update
+        sudo apt-get install -y stow
+    fi
+}
+
+stow_configs() {
+    echo "Stowing configuration files..."
+
+    cd "$DOTFILES"
+
+    # Array of packages to stow
+    packages=("zsh" "tmux" "ghostty" "wezterm")
+
+    # Add macos package only on macOS
+    if [[ "$OS" == "darwin" ]]; then
+        packages+=("macos")
+    fi
+
+    # Stow each package
+    for package in "${packages[@]}"; do
+        if [ -d "$package" ]; then
+            echo "Stowing $package..."
+            stow -v -t "$HOME" "$package" 2>&1 || {
+                echo "Warning: Failed to stow $package (this may be normal if files already exist)"
+            }
+        fi
+    done
+
+    echo "Stowing complete!"
+}
+
 install_ohmyzsh() {
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         echo "Installing oh-my-zsh unattended"
         sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-        cat "$DOTFILES/zshrc" > ~/.zshrc
     fi
 
     if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
@@ -22,7 +65,6 @@ install_ohmytmux() {
         echo "Installing oh-my-tmux"
         git clone https://github.com/gpakosz/.tmux.git "$HOME/.tmux"
         ln -s -f "$HOME/.tmux/.tmux.conf" "$HOME/.tmux.conf"
-        cat "$DOTFILES/tmux.conf.local" > ~/.tmux.conf.local
     fi
 }
 
@@ -31,13 +73,6 @@ install_nordtmux() {
         echo "Installing nord-tmux"
         git clone https://github.com/arcticicestudio/nord-tmux ~/.tmux/themes/nord-tmux
     fi
-}
-
-setup_ghostty() {
-  if [ ! -d "$HOME/.config/ghostty" ]; then
-    mkdir "$HOME/.config/ghostty"
-  fi
-  cp ghostty_config "$HOME/.config/ghostty/config"
 }
 
 setup_git() {

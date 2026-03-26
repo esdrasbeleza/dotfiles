@@ -1,11 +1,12 @@
 # dotfiles
 
-A set of scripts and configuration files to configure new computers.
+A set of scripts and configuration files to configure new computers using GNU Stow for dotfile management.
 
 They work on macOS and Ubuntu so far.
 
 ## What they do
 
+- Install GNU Stow and use it to symlink configuration files
 - Install the command line tools that I like to use (tmux, neovim, jq, silversearcher)
 - Install and configure zsh and tmux
 - Install go
@@ -21,3 +22,25 @@ They work on macOS and Ubuntu so far.
 - Install Rectangle
 - Configure home and end keys
 - Add the apps above to the dock
+
+## Usage
+
+Simply run:
+
+```bash
+./apply.sh
+```
+
+This will install all applications and use GNU Stow to symlink your configuration files.
+
+## Structure
+
+Configuration files are organized into Stow packages:
+
+- `zsh/` - ZSH configuration (.zshrc)
+- `tmux/` - tmux configuration (.tmux.conf.local)
+- `ghostty/` - Ghostty terminal configuration
+- `wezterm/` - WezTerm configuration
+- `macos/` - macOS-specific configurations (KeyBindings, iTerm settings)
+
+Each package directory mirrors your home directory structure. GNU Stow creates symlinks from your home directory to these files.
