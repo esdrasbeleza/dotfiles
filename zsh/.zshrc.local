@@ -1,8 +1,0 @@
-# Machine-specific and work-specific configuration
-# Add your customizations here
-# This file can be modified locally without affecting your dotfiles repo
-
-# Examples:
-# alias myalias="command"
-# source ~/path/to/work/script.sh
-# export WORK_VAR="value"
