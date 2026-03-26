@@ -12,11 +12,39 @@ finish() {
 
 install_cli_tools() {
     echo "Installing CLI tools"
-    sudo apt install -y silversearcher-ag tmux vim neovim jq direnv fonts-hack-ttf git shellcheck ripgrep fd sqlite python3 python3-pip
+    sudo apt install -y silversearcher-ag tmux vim neovim jq direnv fonts-hack-ttf git shellcheck ripgrep fd-find sqlite3 python3 python3-pip bat
 
-    # Install zoxide (not in apt repos)
+    # Modern CLI tools (install from official sources)
+
+    # zoxide - https://github.com/ajeetdsouza/zoxide
     if ! command -v zoxide &> /dev/null ; then
-        curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+        curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
+    fi
+
+    # eza - https://github.com/eza-community/eza/blob/main/INSTALL.md
+    if ! command -v eza &> /dev/null ; then
+        sudo mkdir -p /etc/apt/keyrings
+        wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+        echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+        sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+        sudo apt update
+        sudo apt install -y eza
+    fi
+
+    # git-delta - https://github.com/dandavison/delta#installation
+    if ! command -v delta &> /dev/null ; then
+        wget -qO- https://github.com/dandavison/delta/releases/download/0.19.1/git-delta_0.19.1_amd64.deb -O /tmp/delta.deb
+        sudo dpkg -i /tmp/delta.deb
+        rm /tmp/delta.deb
+    fi
+
+    # lazygit - https://github.com/jesseduffield/lazygit#ubuntu
+    if ! command -v lazygit &> /dev/null ; then
+        LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
+        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        tar xf lazygit.tar.gz lazygit
+        sudo install lazygit /usr/local/bin
+        rm lazygit lazygit.tar.gz
     fi
 }
 

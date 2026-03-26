@@ -1,0 +1,35 @@
+[push]
+	autoSetupRemote = true
+	default = current
+
+[alias]
+	lb = for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:iso8601) %(refname:short)'
+
+[init]
+	defaultBranch = main
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
+
+[core]
+	pager = delta
+	excludesfile = ~/.gitignore_global
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	syntax-theme = Nord
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default
+
+# Include local config (user info, work/personal paths)
+[include]
+	path = ~/.gitconfig.local

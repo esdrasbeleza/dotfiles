@@ -133,6 +133,17 @@ export EDITOR=nvim
 alias vim='nvim'
 alias vi='nvim'
 
+# Modern CLI replacements
+if command -v eza &> /dev/null; then
+    alias ls='eza --icons'
+    alias ll='eza -lah --icons'
+    alias tree='eza --tree --icons'
+fi
+
+if command -v bat &> /dev/null; then
+    alias cat='bat'
+fi
+
 # Source local config (work-specific, machine-specific, not in git)
 if [ -f "$HOME/.zshrc.local" ]; then
     source "$HOME/.zshrc.local"
