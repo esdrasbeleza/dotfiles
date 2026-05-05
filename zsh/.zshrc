@@ -138,9 +138,9 @@ alias vi='nvim'
 
 # Modern CLI replacements
 if command -v eza &> /dev/null; then
-    alias ls='eza --icons'
-    alias ll='eza -lah --icons'
-    alias tree='eza --tree --icons'
+    alias ls='eza --icons=always $@'
+    alias ll='eza -lah --icons=always $@'
+    alias tree='eza --tree --icons=always $@'
 fi
 
 if command -v bat &> /dev/null; then
