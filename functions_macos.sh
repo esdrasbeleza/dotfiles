@@ -1,5 +1,14 @@
 #!/bin/bash
 
+install_stow() {
+    if command -v stow &> /dev/null ; then
+        echo "GNU Stow is already installed"
+        return
+    fi
+    echo "Installing GNU Stow"
+    brew install stow
+}
+
 init() {
     echo "Starting configuration for macOS"
     install_homebrew

@@ -4,24 +4,6 @@
 
 DOTFILES=`pwd`
 
-install_stow() {
-    if command -v stow &> /dev/null ; then
-        echo "GNU Stow is already installed"
-        return
-    fi
-
-    echo "Installing GNU Stow"
-
-    if [[ "$OS" == "darwin" ]]; then
-        brew install stow
-    elif [[ "$OS" == "linux-arch" ]]; then
-        sudo pacman -S --noconfirm stow
-    elif [[ "$OS" == "linux-ubuntu" ]]; then
-        sudo apt-get update
-        sudo apt-get install -y stow
-    fi
-}
-
 migrate_git_config() {
     # If ~/.gitconfig exists, check if it's already our symlink
     if [ -e "$HOME/.gitconfig" ]; then

@@ -1,5 +1,14 @@
 #!/bin/bash
 
+install_stow() {
+    if command -v stow &> /dev/null ; then
+        echo "GNU Stow is already installed"
+        return
+    fi
+    echo "Installing GNU Stow"
+    sudo pacman -S --noconfirm stow
+}
+
 install_snap() {
     if [[ ! -d "/snap" ]] ; then
         sudo ln -s /var/lib/snapd/snap /snap

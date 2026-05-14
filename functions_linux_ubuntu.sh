@@ -1,5 +1,15 @@
 #!/bin/bash
 
+install_stow() {
+    if command -v stow &> /dev/null ; then
+        echo "GNU Stow is already installed"
+        return
+    fi
+    echo "Installing GNU Stow"
+    sudo apt-get update
+    sudo apt-get install -y stow
+}
+
 init() {
     echo "Starting system update for Ubuntu"
     # sudo apt update -y
