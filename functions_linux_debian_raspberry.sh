@@ -20,11 +20,7 @@ finish() {
 
 install_cli_tools() {
     echo "Installing CLI tools"
-    sudo apt install -y silversearcher-ag tmux vim neovim jq direnv fonts-hack git shellcheck ripgrep fd-find sqlite3 python3 python3-pip bat
-
-    if ! command -v zoxide &> /dev/null ; then
-        curl -sSfL https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | sh
-    fi
+    sudo apt install -y silversearcher-ag tmux vim neovim jq direnv fonts-hack git shellcheck ripgrep fd-find sqlite3 python3 python3-pip bat zoxide
 
     if ! command -v eza &> /dev/null ; then
         ARCH=$(dpkg --print-architecture)
