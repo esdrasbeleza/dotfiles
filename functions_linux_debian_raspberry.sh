@@ -6,7 +6,7 @@ init() {
 }
 
 finish() {
-    # Functions to be executed in the end of configuration
+    echo "" >> /dev/null
 }
 
 install_cli_tools() {
