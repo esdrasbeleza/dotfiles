@@ -101,18 +101,6 @@ install_postman() {
     sudo snap install postman
 }
 
-install_spotify() {
-    if command -v spotify &> /dev/null ; then
-        echo "Spotify is already installed, skipping"
-        return
-    fi
-    echo "Installing Spotify"
-    curl -sS https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/debian $(. /etc/os-release; echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list
-    sudo apt update
-    sudo apt install -y spotify-client
-}
-
 install_docker() {
     if command -v docker &> /dev/null ; then
         echo "Docker is already installed, skipping"
