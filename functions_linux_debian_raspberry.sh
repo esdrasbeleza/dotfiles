@@ -79,15 +79,6 @@ install_zsh() {
     chsh -s $(which zsh)
 }
 
-install_slack() {
-    if command -v slack &> /dev/null ; then
-        echo "Slack is already installed, skipping"
-        return
-    fi
-    echo "Installing Slack"
-    sudo snap install slack --classic
-}
-
 install_1password() {
     if command -v 1password &> /dev/null ; then
         echo "1Password is already installed, skipping"
@@ -98,22 +89,6 @@ install_1password() {
     echo 'deb [signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian stable main' | sudo tee /etc/apt/sources.list.d/1password.list
     sudo apt update
     sudo apt install -y 1password
-}
-
-install_ghostty() {
-    if command -v ghostty &> /dev/null ; then
-        echo "Ghostty is already installed, skipping"
-        return
-    fi
-    echo "Installing Ghostty"
-    ARCH=$(dpkg --print-architecture)
-    if [ "$ARCH" = "arm64" ]; then
-        wget https://github.com/ghostty-org/ghostty/releases/latest/download/ghostty-linux-arm64.deb -O /tmp/ghostty.deb
-    else
-        wget https://github.com/ghostty-org/ghostty/releases/latest/download/ghostty-linux-x86_64.deb -O /tmp/ghostty.deb
-    fi
-    sudo dpkg -i /tmp/ghostty.deb
-    rm /tmp/ghostty.deb
 }
 
 install_asdf() {

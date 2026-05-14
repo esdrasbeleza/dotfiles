@@ -36,11 +36,19 @@ install_go
 install_stow
 install_asdf
 install_ohmyzsh
-install_ghostty
-install_slack
 install_ohmytmux
 install_nordtmux
 install_1password
+
+if ! grep -qi "Raspberry Pi" /proc/cpuinfo 2>/dev/null; then
+    install_ghostty
+    install_slack
+    install_firefox
+    install_vscode
+    install_postman
+    install_docker
+fi
+
 migrate_git_config
 stow_configs
 finish
