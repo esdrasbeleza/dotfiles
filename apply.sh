@@ -12,6 +12,14 @@ if [[ "$OS" =~ ^darwin ]]; then
 elif [[ "$OS" =~ ^ubuntu ]]; then
     OS="linux-ubuntu"
     source functions_linux_ubuntu.sh
+elif [[ "$OS" =~ ^debian ]]; then
+    if grep -qi "Raspberry Pi" /proc/cpuinfo 2>/dev/null; then
+        OS="linux-debian-raspberry"
+        source functions_linux_debian_raspberry.sh
+    else
+        OS="linux-debian"
+        source functions_linux_debian.sh
+    fi
 elif [[ -f "/etc/arch-release" ]]; then
     OS="linux-arch"
     source functions_linux_arch.sh || exit 1
@@ -32,10 +40,6 @@ install_ghostty
 install_slack
 install_ohmytmux
 install_nordtmux
-install_firefox
-install_vscode
-install_postman
-install_docker
 install_1password
 migrate_git_config
 stow_configs
