@@ -191,7 +191,6 @@ configure_dock() {
     apps_to_add[2]="/Applications/Visual Studio Code.app"
     apps_to_add[3]="/Applications/Ghostty.app"
     apps_to_add[4]="/System/Applications/Notes.app"
-    apps_to_add[5]="/Applications/Spotify.app"
 
     # Remove existing apps from dock (ignore errors if not found)
     for app in "${apps_to_add[@]}"; do
