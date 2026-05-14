@@ -12,7 +12,6 @@ They work on macOS and Ubuntu so far.
 - Install go
 - Install Postman
 - Install Firefox
-- Download Spotify (part of the instalation needs to be manual on macOS)
 - Download 1Password (part of the instalation needs to be manual on macOS)
 
 ### on macOS:

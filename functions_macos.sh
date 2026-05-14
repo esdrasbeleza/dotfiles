@@ -128,19 +128,6 @@ install_postman() {
     rm postman.zip
 }
 
-install_spotify() {
-    if [ -d "/Applications/Spotify.app"  ]; then
-        echo "Spotify is already installed, skipping"
-        return
-    fi
-
-    echo "Downloading Spotify"
-    curl -O https://download.scdn.co/SpotifyInstaller.zip
-    unzip SpotifyInstaller.zip && rm SpotifyInstaller.zip
-    echo "⚠️ Spotify was downloaded, but you need to install it manually!"
-    open "Install Spotify.app" &
-}
-
 install_docker() {
     if command -v docker &> /dev/null ; then
         echo "Docker is already installed, skipping"

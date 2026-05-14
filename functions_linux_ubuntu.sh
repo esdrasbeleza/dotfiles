@@ -104,15 +104,6 @@ install_postman() {
     sudo snap install postman
 }
 
-install_spotify() {
-    if command -v spotify &> /dev/null ; then
-        echo "Spotify is already installed, skipping"
-        return
-    fi
-    echo "Installing Spotify"
-    sudo snap install spotify
-}
-
 install_docker() {
     if command -v docker &> /dev/null ; then
         echo "Docker is already installed, skipping"

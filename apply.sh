@@ -35,7 +35,6 @@ install_nordtmux
 install_firefox
 install_vscode
 install_postman
-install_spotify
 install_docker
 install_1password
 migrate_git_config
