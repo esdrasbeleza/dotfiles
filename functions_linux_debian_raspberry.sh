@@ -18,23 +18,42 @@ install_cli_tools() {
     fi
 
     if ! command -v eza &> /dev/null ; then
-        sudo mkdir -p /etc/apt/keyrings
-        wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-        echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-        sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-        sudo apt update
-        sudo apt install -y eza
+        ARCH=$(dpkg --print-architecture)
+        if [ "$ARCH" = "arm64" ]; then
+            curl -Lo /tmp/eza.deb "https://github.com/eza-community/eza/releases/latest/download/eza_aarch64-unknown-linux-gnu.tar.gz"
+            tar xzf /tmp/eza.deb
+            sudo install eza /usr/local/bin
+            rm eza /tmp/eza.deb
+        else
+            sudo mkdir -p /etc/apt/keyrings
+            wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+            echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+            sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+            sudo apt update
+            sudo apt install -y eza
+        fi
     fi
 
     if ! command -v delta &> /dev/null ; then
-        wget -qO- https://github.com/dandavison/delta/releases/download/0.19.1/git-delta_0.19.1_amd64.deb -O /tmp/delta.deb
+        ARCH=$(dpkg --print-architecture)
+        DELTA_VERSION="0.19.1"
+        if [ "$ARCH" = "arm64" ]; then
+            wget -qO- "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/git-delta_${DELTA_VERSION}_arm64.deb" -O /tmp/delta.deb
+        else
+            wget -qO- "https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/git-delta_${DELTA_VERSION}_amd64.deb" -O /tmp/delta.deb
+        fi
         sudo dpkg -i /tmp/delta.deb
         rm /tmp/delta.deb
     fi
 
     if ! command -v lazygit &> /dev/null ; then
         LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[0-9.]+')
-        curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        ARCH=$(dpkg --print-architecture)
+        if [ "$ARCH" = "arm64" ]; then
+            curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_arm64.tar.gz"
+        else
+            curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+        fi
         tar xf lazygit.tar.gz lazygit
         sudo install lazygit /usr/local/bin
         rm lazygit lazygit.tar.gz
@@ -87,7 +106,12 @@ install_ghostty() {
         return
     fi
     echo "Installing Ghostty"
-    wget https://github.com/ghostty-org/ghostty/releases/latest/download/ghostty-linux-x86_64.deb -O /tmp/ghostty.deb
+    ARCH=$(dpkg --print-architecture)
+    if [ "$ARCH" = "arm64" ]; then
+        wget https://github.com/ghostty-org/ghostty/releases/latest/download/ghostty-linux-arm64.deb -O /tmp/ghostty.deb
+    else
+        wget https://github.com/ghostty-org/ghostty/releases/latest/download/ghostty-linux-x86_64.deb -O /tmp/ghostty.deb
+    fi
     sudo dpkg -i /tmp/ghostty.deb
     rm /tmp/ghostty.deb
 }
