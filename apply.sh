@@ -38,9 +38,9 @@ install_asdf
 install_ohmyzsh
 install_ohmytmux
 install_nordtmux
-install_1password
 
 if ! grep -qi "Raspberry Pi" /proc/cpuinfo 2>/dev/null; then
+    install_1password
     install_ghostty
     install_slack
     install_firefox
